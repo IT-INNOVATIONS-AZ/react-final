@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import { useLogout } from "../hooks/useLogout";
 
 const memberRoutes = [
@@ -25,7 +26,7 @@ const appRoutes = [
 ];
 
 const Navbar = ({ isAuth }) => {
-  const { mutate } = useLogout();
+  const { handleLogout } = useAuth();
   if (isAuth) {
     return (
       <nav>
@@ -34,15 +35,7 @@ const Navbar = ({ isAuth }) => {
             {route.name}
           </Link>
         ))}
-        <button
-          onClick={() => {
-            mutate();
-            localStorage.removeItem("token");
-            window.location.href = "/";
-          }}
-        >
-          Logout
-        </button>
+        <button onClick={handleLogout}>Logout</button>
       </nav>
     );
   }
