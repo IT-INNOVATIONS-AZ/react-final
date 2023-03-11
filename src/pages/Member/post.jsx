@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetPost } from "../../hooks/useGetPost";
+import { createMongoAbility, AbilityBuilder } from "@casl/ability";
 
 const Post = () => {
   const navigate = useNavigate();
